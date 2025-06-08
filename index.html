@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Desgravación Fiscal para Donaciones</title>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: darkgreen;
+            text-align: center;
+        }
+        p {
+            color: darkgreen;
+            text-align: center;
+        }
+        label {
+            color: darkgreen;
+            display: block;
+            margin-top: 10px;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+        .result {
+            color: darkgreen;
+            font-weight: bold;
+        }
+        .cost {
+            color: darkgreen;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<h1>Desgravación Fiscal para Donaciones</h1>
+<p style="white-space: nowrap;"><p style="margin-bottom: 2px;">Desgravación (Madrid) = 80%(hasta 250€) + 55%(resto)</p></p>
+<p style="white-space: nowrap;"><p style="margin-top: 2px;">Desgravación (Otras provincias) = 80%(hasta 250€) + 40%(resto)</p></p>
+
+
+<p><strong>Simulación desgravación en Madrid:</strong></p>
+<form>
+<label for="donacion">Donación (€):</label>
+<input id="donacion" name="donacion" oninput="calcularDesgravacion()" type="number"/>
+<label for="desgravacion">Desgravación (€):</label>
+<input id="desgravacion" name="desgravacion" readonly="" type="number"/>
+<label for="coste">Coste para donante (€):</label>
+<input id="coste" name="coste" readonly="" type="number"/>
+</form>
+<script>
+        function calcularDesgravacion() {
+            var donacion = parseFloat(document.getElementById('donacion').value);
+            var desgravacion = 0;
+
+            if (donacion <= 250) {
+                desgravacion = donacion * 0.80;
+            } else {
+                desgravacion = 200 + (donacion - 250) * 0.55;
+            }
+
+            document.getElementById('desgravacion').value = desgravacion.toFixed(2);
+            document.getElementById('coste').value = (donacion - desgravacion).toFixed(2);
+        }
+    </script>
+
+<p><strong>Instrucciones para realizar la donación:</strong></p>
+<ol>
+<li>Trasferencia a cuenta <strong style="color: green;">ES86 0081 5240 0000 0332 7241</strong> (Titular: Fundación Esperanza y Alegría; Concepto: Angel's Village) ó hacer <strong style="color: green;">BIZUM a 11287</strong></li>
+<li>Rellenar este formulario para emitir el certificado fiscal: <a href="https://tinyurl.com/48b3er97">https://tinyurl.com/48b3er97</a></li>
+</ol>
+<p><strong>Si todavía no has visto el video de Angel's Village, NO TE LO PIERDAS:</strong> <a href="https://youtu.be/cGFzladyVTE">https://youtu.be/cGFzladyVTE</a></p>
+</body>
+</html>
